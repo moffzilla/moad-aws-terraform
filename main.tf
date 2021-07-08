@@ -33,7 +33,8 @@ data "aws_security_group" "selected" {
 }
 
 data "aws_subnet" "example" {
-  vpc_id = "vpc-e867aa92"
+  for_each = data.aws_subnet_ids.example.ids
+  id       = each.value
 }
 
 data "template_file" "user_data" {
