@@ -32,6 +32,10 @@ data "aws_security_group" "selected" {
   id = "sg-24b4946e"
 }
 
+data "aws_subnet_ids" "example" {
+  vpc_id = "vpc-e867aa92"
+}
+
 data "aws_subnet" "example" {
   for_each = data.aws_subnet_ids.example.ids
   id       = each.value
