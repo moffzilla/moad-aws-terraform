@@ -59,7 +59,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_security_group" "sg_22_80" {
   name   = "sg_22"
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = vpc-0b8826c3fc8e9452e
 
   # SSH access from the VPC
   ingress {
