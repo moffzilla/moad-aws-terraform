@@ -45,6 +45,11 @@ resource "aws_instance" "web" {
   }
 }
 
+resource "aws_network_interface_sg_attachment" "sg_attachment1" {
+  security_group_id    = "sg-002fefea4006ef36e"
+  network_interface_id = "${aws_instance.web.primary_network_interface_id}"
+}
+
 output "public_ip" {
   value = aws_instance.web.public_ip
 }
