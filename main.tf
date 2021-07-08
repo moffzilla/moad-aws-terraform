@@ -105,7 +105,7 @@ resource "aws_instance" "web" {
   user_data                   = data.template_file.user_data.rendered
 
   tags = {
-    Cost Center = var.cost_center
+    "cost_center" = var.cost_center
   }
 }
 
