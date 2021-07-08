@@ -1,5 +1,5 @@
 # moad-aws-terraform
 
-![MOAD](https://github.com/moffzilla/moad-aws-terraform/blob/main/images/moad.png)
+![MOAD](https://raw.githubusercontent.com/moffzilla/moad-aws-terraform/main/images/moad.png)
 
 Deploys the core MOAD Application in AWS via Terraform
