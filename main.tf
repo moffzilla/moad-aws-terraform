@@ -39,15 +39,13 @@ resource "aws_instance" "web" {
 #  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
   associate_public_ip_address = true
   user_data                   = data.template_file.user_data.rendered
+  security_groups = [
+      "sg-002fefea4006ef36e"
+  ]  
 
   tags = {
     "cost_center" = var.cost_center
   }
-}
-
-resource "aws_network_interface_sg_attachment" "sg_attachment1" {
-  security_group_id    = "sg-002fefea4006ef36e"
-  network_interface_id = "${aws_instance.web.primary_network_interface_id}"
 }
 
 output "public_ip" {
