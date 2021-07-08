@@ -94,7 +94,7 @@ resource "aws_security_group" "sg_22_80" {
 }
 
 data "template_file" "user_data" {
-  template = file("../scripts/add-ssh-web-app.yaml")
+  template = file("scripts/add-ssh-web-app.yaml")
 }
 
 resource "aws_instance" "web" {
