@@ -28,9 +28,41 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-data "aws_security_group" "selected" {
-  id = "sg-24b4946e"
+resource "aws_security_group" "sg_22_80" {
+  name   = "sg_22"
+  vpc_id = "vpc-e867aa92"
+
+  # SSH access from the VPC
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
+
 
 data "aws_subnet_ids" "example" {
   vpc_id = "vpc-e867aa92"
@@ -51,7 +83,7 @@ resource "aws_instance" "web" {
   instance_type               = "t2.micro"
   #availability_zone = var.region
   subnet_id                   = each.value
-  vpc_security_group_ids      = [data.aws_security_group.selected.vpc_id]
+  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
   associate_public_ip_address = true
   user_data                   = data.template_file.user_data.rendered
 #  security_groups = [
