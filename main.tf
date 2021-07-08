@@ -44,7 +44,7 @@ resource "aws_instance" "web" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   availability_zone = var.region
-  subnet_id                   = aws_subnet.example.id
+  subnet_id                   = data.aws_subnet.example.id
   vpc_security_group_ids      = [data.aws_security_group.selected.vpc_id]
   associate_public_ip_address = true
   user_data                   = data.template_file.user_data.rendered
