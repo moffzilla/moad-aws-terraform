@@ -28,6 +28,14 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "aws_security_group" "selected" {
+  id = "sg-24b4946e"
+}
+
+data "aws_subnet" "example" {
+  vpc_id = "vpc-e867aa92"
+}
+
 data "template_file" "user_data" {
   template = file("scripts/add-ssh-web-app.yaml")
 }
@@ -36,13 +44,13 @@ resource "aws_instance" "web" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   availability_zone = var.region
-#  subnet_id                   = aws_subnet.subnet_public.id
-#  vpc_security_group_ids      = [aws_security_group.sg_22_80.id]
+  subnet_id                   = aws_subnet.example.id
+  vpc_security_group_ids      = [data.aws_security_group.selected.vpc_id]
   associate_public_ip_address = true
   user_data                   = data.template_file.user_data.rendered
-  security_groups = [
-      "sg-24b4946e"
-  ]  
+#  security_groups = [
+#      "sg-24b4946e"
+#  ]  
 
   tags = {
     "cost_center" = var.cost_center
