@@ -40,7 +40,7 @@ resource "aws_instance" "web" {
   associate_public_ip_address = true
   user_data                   = data.template_file.user_data.rendered
   security_groups = [
-      "sg-002fefea4006ef36e"
+      "sg-24b4946e"
   ]  
 
   tags = {
