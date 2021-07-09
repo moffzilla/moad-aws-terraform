@@ -20,3 +20,7 @@ variable "cost_center" {
   description = "Specific Cost Center"
   default     = "Engineering"
 }
+
+variable "ssh_credentials" {
+  description = "Default Credentials"
+}

@@ -16,8 +16,8 @@ users:
     sudo: ALL=(ALL) NOPASSWD:ALL
     groups: users, admin
     lock_passwd: false
-#    ssh_authorized_keys:
-#      - ssh-rsa AAAAHHHHHH
+    ssh_authorized_keys:
+      - ${var.ssh_credentials}
 
 # Downloads the golang package
 packages:
