@@ -7,11 +7,6 @@ variable "cidr_subnet" {
   default     = "10.1.0.0/24"
 }
 
-variable "environment_tag" {
-  description = "Environment tag"
-  default     = "Learn"
-}
-
 variable "region" {
   description = "The region Terraform deploys your instance"
 }

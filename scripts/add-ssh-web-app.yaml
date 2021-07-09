@@ -17,7 +17,7 @@ users:
     groups: users, admin
     lock_passwd: false
     ssh_authorized_keys:
-      - ${ssh_credentials}
+      - ${ssh_public_key}
 
 # Downloads the golang package
 packages:
