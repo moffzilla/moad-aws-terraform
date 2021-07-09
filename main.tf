@@ -106,7 +106,8 @@ resource "aws_instance" "web" {
   user_data                   = data.template_file.user_data.rendered
 
   tags = {
-    Name = "Learn-CloudInit"
+    Name = "MOAD Front-End",
+    Cost_Center = var.cost_center
   }
 }
 
